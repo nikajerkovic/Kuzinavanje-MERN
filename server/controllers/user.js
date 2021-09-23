@@ -15,7 +15,6 @@ export const signin = async (req, res) => {
 
         if (!isPasswordCorrect) return res.status(400).json({ message: "Invalid credentials." })
 
-        // ako user postoji u bazi i sifra je tocna, onda tribamo dohvatit njegov jwt i poslat ga frontendu
         const token = jwt.sign({ email: existingUser.email, id: existingUser._id }, process.env.JWT_SECRET_CODE, { expiresIn: "1h" })
 
         res.status(200).json({ result: existingUser, token })
@@ -36,14 +35,13 @@ export const signup = async (req, res) => {
 
     try {
 
-        // ne mozemo napravit novi acc ako imamo vec taj existing user
         const existingUser = await User.findOne({ email });
 
         if (existingUser) return res.status(400).json({ message: "User already exist." })
 
         if (password !== confirmPassword) return res.status(400).json({ message: "Passwords don't match." })
 
-        const hashedPassword = await bcrypt.hash(password, 12) // drugi argument ode je salt
+        const hashedPassword = await bcrypt.hash(password, 12) // drugi argument je salt
 
         const result = await User.create({
             email, password: hashedPassword, name: `${firstName

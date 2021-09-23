@@ -6,12 +6,9 @@ import useStyles from './styles';
 
 const Recipes = ({ setCurrentId }) => {
    
-    // prije smo imali niz recepata, a sad imamo objekt unutar kojeg imamo property koji se odnosi na recepte [] -> {recipes: []}
-    const { recipes, isLoading } = useSelector((state) => state.recipes); // state.recipes jer smo recepies stavili u reducers->index.js
+    const { recipes, isLoading } = useSelector((state) => state.recipes);
     const classes = useStyles();
 
-
-    // ako nema postova i ne loadamo ih - to znaci da oni ne postoje  
     if (!recipes.length && !isLoading) return <div> <Typography className={classes.noPosts} variant="h6" align="left">Nažalost nema takvih recepata.</Typography></div>;
 
     return (

@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 import recipeRoutes from './routes/recipes.js';
 import userRoutes from './routes/users.js';
 
-const app = express(); //inicijaliziramo app
+const app = express(); 
 
 dotenv.config();
 
@@ -14,7 +14,7 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
-app.use('/recipes', recipeRoutes); //svaka ruta unutar recipeRoutes ce pocet sa recipes, dosad je bilo  localhost:5000/ a sad localhost:5000/recipes
+app.use('/recipes', recipeRoutes);
 app.use('/user', userRoutes);
 
 app.get('/', (req, res) => {

@@ -12,16 +12,14 @@ const Form = ({ currentId, setCurrentId }) => {
         title: '', servings: '', time: '', ingredients: [], message: '', tags: [], selectedFile: ''
     });
 
-    // ako current id nije null, želimo loopat kroz recepte i pronac onaj kojiima isti id kao nas current id - ako nemamo current id onda samo zelimo null
+    
     const recipe = useSelector((state) => (currentId ? state.recipes.recipes.find((p) => p._id === currentId) : null));
-
     const classes = useStyles();
     const history = useHistory();
     const dispatch = useDispatch();
     const user = JSON.parse(localStorage.getItem('profile'))
 
 
-    // sa useEffectom punimo polja ako current id vec postoji
     useEffect(() => {
         if (recipe) setRecipeData(recipe);
     }, [recipe])
@@ -38,7 +36,6 @@ const Form = ({ currentId, setCurrentId }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // ako id kojem pristupamo vec postoji onda taj recept updateamo, a u suprotnom ga tek stvaramo
         if (currentId) {
             dispatch(updateRecipe(currentId, { ...recipeData, name: user?.result?.name }));
         } else {

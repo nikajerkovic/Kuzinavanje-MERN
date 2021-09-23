@@ -24,8 +24,6 @@ const Home = () => {
     const query = useQuery();
     const history = useHistory();
     const classes = useStyles();
-
-    // ovo ce procitat nas url i vidit imamo li page parametar u njemu - ako nemamo page moramo bit na prvoj 
     const page = query.get('page') || 1;
     const searchQuery = query.get('searchQuery');
     
@@ -51,7 +49,7 @@ const Home = () => {
     }
 
     const handleKeyPress = (e) => {
-        // keyCode === 13 oznacava enter
+        // keyCode === 13 enter
 
         if (e.keyCode === 13) {
             searchRecipe();

@@ -1,15 +1,12 @@
 import React from 'react';
 import { Container } from '@material-ui/core';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-//switch sluzi za minjanje izmedu komponenti
 import RecipeDetails from './components/RecipeDetails/RecipeDetails';
 import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
 import Auth from './components/Auth/Auth';
 import useStyles from './styles';
 
-
-// auth se smi prikazat samo ako niko nije ulorgiran
 
 const App = () => {
     const classes = useStyles();

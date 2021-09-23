@@ -23,7 +23,6 @@ export default makeStyles((theme) => ({
   noPosts: {
     color: '#0b4141',
     fontWeight: '700',
-    //fontFamily: 'Rakkas Regular',
     fontFamily: 'Courage Regular',
   },
 

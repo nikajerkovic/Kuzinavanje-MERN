@@ -28,7 +28,7 @@ const Likes = ({ recipe, size }) => {
 
     const Like = () => {
         if (likes.length > 0) {
-            // provjeravamo je li korisnik vec na listi likeova - googleId ako se prijavia priko googlea ili _id ako se prijavia normalno
+        
             return likes.find((like) => like === userId)
                 ? (
 

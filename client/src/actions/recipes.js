@@ -16,15 +16,13 @@ export const getRecipe = (id) => async (dispatch) => {
 
 };
 
-// zelimo da fetcha postove samo s tog specificnog pagea, a ne svih 
-export const getRecipes = (page) => async (dispatch) => {
-    // želimo pokrenit loading prije nego sta fetchamo postove, a zelimo zavrsit s loadanjem nakon sta dohvatimo sve postove 
 
-    // u tryu pokusavamo fetchat sve podatke iz api-a
+export const getRecipes = (page) => async (dispatch) => {
+   
     try {
         dispatch({ type: START_LOADING })
         const { data } = await api.fetchRecipes(page);
-        //data nam je response koji dobijemo tj. response pohranjujemo u data -> data predstavlja postove
+        
         dispatch({ type: FETCH_ALL, payload: data });
         dispatch({ type: END_LOADING })
     } catch (error) {
@@ -62,7 +60,7 @@ export const createRecipe = (recipe, history) => async (dispatch) => {
 
 export const updateRecipe = (id, recipe) => async (dispatch) => {
     try {
-        // ovo nam returna updatean recept
+        
         const { data } = await api.updateRecipe(id, recipe);
 
         dispatch({ type: UPDATE, payload: data });
@@ -74,7 +72,7 @@ export const updateRecipe = (id, recipe) => async (dispatch) => {
 
 export const deleteRecipe = (id) => async (dispatch) => {
     try {
-        // ne zanima nas ono sta ovo returna pa zato nemamo ovo const response = ...
+       
         await api.deleteRecipe(id);
         dispatch({ type: DELETE, payload: id })
     } catch (error) {
@@ -84,7 +82,6 @@ export const deleteRecipe = (id) => async (dispatch) => {
 
 export const likeRecipe = (id) => async (dispatch) => {
     try {
-        // isto kao i update
         const { data } = await api.likeRecipe(id);
 
         dispatch({ type: UPDATE, payload: data });

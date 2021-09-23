@@ -1,9 +1,4 @@
-// ovo nam je nova komponenta koja nam sluzi kako u auth nebi 10 puta ponavljali isto(textfield)
-
-// radimo generalizirani input field
-
-// inputProps je ona ikonica za show password
-
+// radimo generalizirani input
 import React from 'react'
 import { TextField, Grid, InputAdornment, IconButton } from '@material-ui/core'
 import Visibility from '@material-ui/icons/Visibility'

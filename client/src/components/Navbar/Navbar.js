@@ -25,7 +25,7 @@ const Navbar = () => {
     useEffect(() => {
         const token = user?.token;
 
-        // ovo nam sluzi da se korisnik automatski odjavi ako mu je isteka token
+        // korisnik se automatski odjavi ako mu istekne token
         if (token) {
             const decodedToken = decode(token);
 

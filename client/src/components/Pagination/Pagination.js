@@ -9,13 +9,11 @@ import useStyles from './styles';
 
 const Paginate = ({ page }) => {
 
-    // ovo je reducer koji ce imat pristup broju stranica
     const { numberOfPages } = useSelector((state) => state.recipes);
     const classes = useStyles();
     const dispatch = useDispatch();
 
     useEffect(() => {
-        // zelimo da se dogodi kad se page promini 
         if (page) dispatch(getRecipes(page));
 
     }, [page, dispatch]);

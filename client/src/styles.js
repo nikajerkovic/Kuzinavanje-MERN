@@ -5,7 +5,6 @@ export default makeStyles((theme) => ({
     padding: '0px',
   },
 
-  // ovo ce se dogodit tek kad je uređaj small ili manji od small - ovo je dio material uia
   [theme.breakpoints.down('sm')]: {
     mainContainer: {
       flexDirection: 'column-reverse',
@@ -14,5 +13,3 @@ export default makeStyles((theme) => ({
   }
 
 }));
-
-//unutar makeStyles callback function koja vraca objekt

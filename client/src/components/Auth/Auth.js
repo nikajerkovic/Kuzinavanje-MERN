@@ -10,9 +10,6 @@ import useStyles from './styles';
 import Input from './Input';
 import { signin, signup } from '../../actions/auth';
 
-// Hint: kad importamo nesto sta pocinje velikim slovom najvjv ce bit komponenta
-
-// redner se osnosi na to kako cemo prikazat naš botun tj, kako ce izgledat
 
 const InitialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
 
@@ -22,18 +19,14 @@ const Auth = () => {
     const [isSignup, setIsSignup] = useState(false);
     const dispatch = useDispatch();
     const history = useHistory();
-    //ovo nam sluzi za provjeru jesu li polja popunjena
     const [formData, setFormData] = useState(InitialState);
-
-    // kad god imamo nesto sa stanjima bitno nam je uvik prijašnje stanje, ako je postavljeno makni, ako nije postavljeno postavi
     const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword)
 
 
 
     const handleSubmit = (e) => {
-        e.preventDefault(); //ovim sprjecavamo refreshanje u reactu
+        e.preventDefault(); 
         console.log(formData);
-        //imat cemo 2 vrste sumbita, za sign up i sign in 
 
         if (isSignup) {
             dispatch(signup(formData, history))
@@ -60,7 +53,7 @@ const Auth = () => {
     const googleError = () => alert('Google Sign In was unsuccessful. Try again later');
 
     const handleChange = (e) => {
-        //ovaj dio sa e nam omogucava da trenutnu vrijednost upišemo na polje u kojem se nalazimo - video 3 oko 1:20
+        
         setFormData({ ...formData, [e.target.name]: e.target.value });
 
     }

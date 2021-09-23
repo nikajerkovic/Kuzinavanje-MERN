@@ -30,12 +30,10 @@ const variable = (state = { isLoading: true, recipes: [] }, action) => {
       return { ...state, recipes: [...state.recipes, action.payload] }; 
     case UPDATE:
       //case 'LIKE':
-      // mapiramo kroz postojeci niz i vracamo izmijenjeni, action.payload je zapravo izmijenjeni recept
       return { ...state, recipes: state.recipes.map((recipe) => (recipe._id === action.payload._id ? action.payload : recipe)) };
 
     case DELETE:
       return { ...state, recipes: state.recipes.filter((recipe) => recipe._id !== action.payload) };
-    // zadrzavamo sve postove osin one koje smo izbrisali 
 
     default:
       return state;

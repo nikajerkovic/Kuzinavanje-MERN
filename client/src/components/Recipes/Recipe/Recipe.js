@@ -16,8 +16,6 @@ const Recipe = ({ recipe, setCurrentId }) => {
     const history = useHistory();
     const user = JSON.parse(localStorage.getItem('profile'));
 
-
-    // zelimo navigirat na odredeni url
     const openRecipe = () => history.push(`/recipes/${recipe._id}`)
 
     return (

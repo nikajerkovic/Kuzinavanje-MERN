@@ -24,12 +24,10 @@ export const getRecipes = async (req, res) => {
     try {
 
         const LIMIT = 12; // maksimalan broj postova po pageu 
-
-        // 4. video 1:04 objasnjenje kako dobijemo starrtIndex - page je na fronendu broj, ali kad se pozove req.query to vraca string 
         const startIndex = (Number(page) - 1) * LIMIT;
         const total = await RecipeMessage.countDocuments({})
 
-        // sortirani od najnovijeg prema najstarijem
+        //najnoviji do najstarijeg
         const recipes = await RecipeMessage.find().sort({ _id: -1 }).limit(LIMIT).skip(startIndex);
 
         res.status(200).json({ data: recipes, currentPage: Number(page), numberOfPages: Math.ceil(total / LIMIT) });
@@ -38,17 +36,11 @@ export const getRecipes = async (req, res) => {
     }
 }
 
-// params i query su dvi razlicite stvari:
-// QUERY -> /posts?page=1 -> page = 1
-// PARAMS -> /recipes/123 -> id = 123
-
 export const getRecipesBySearch = async (req, res) => {
     const { searchQuery, tags } = req.query
     try {
-        // ovo smo konvertali jer tako mongodb lakse pretrazuje
         const title = new RegExp(searchQuery, 'i');
         const recipes = await RecipeMessage.find({ $or: [{ title }, { tags: { $in: tags.split(',') } }] });
-        // $or sluzi da nam nađe ili naslov ili tagove 
 
         res.json({ data: recipes })
     } catch (error) {
@@ -75,11 +67,9 @@ export const createRecipe = async (req, res) => {
 
 export const updateRecipe = async (req, res) => {
 
-    // ako imamo recipe/123 - 123 ce odma popunit id
     const { id: _id } = req.params;
     const recipe = req.body; 
 
-    //provjeravamo je li _id stvarno mongoose objekt, ako je mozemo updateat
     if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No post with that id');
 
     const updatedRecipe = await RecipeMessage.findByIdAndUpdate(_id, { ...recipe, _id }, { new: true });
@@ -119,7 +109,7 @@ export const likeRecipe = async (req, res) => {
         recipe.likes.push(req.userId)
     } else {
         // dislike the recipe
-        recipe.likes = recipe.likes.filter((id) => id !== String(req.userId)) // vraca ideve svih likeova osim trenutnog usera
+        recipe.likes = recipe.likes.filter((id) => id !== String(req.userId))
 
     }
 

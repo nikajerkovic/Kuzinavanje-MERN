@@ -19,8 +19,6 @@ function RecipeDetails() {
     const classes = useStyles();
     const { id } = useParams(null);
 
-
-    // ovaj useeffect ce se dogodit svaki put kad se id od posta promini
     useEffect(() => {
         dispatch(getRecipe(id))
     }, [id, dispatch])
